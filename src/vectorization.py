@@ -9,8 +9,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 # ============================================================
 # Load the datasets
 # ============================================================
-resumes_df = pd.read_csv("datasets\cleaned\cleaned_resumes.csv")
-jobs_df = pd.read_csv("datasets\cleaned\cleaned_job_postings.csv")
+resumes_df = pd.read_csv("datasets/cleaned/cleaned_resumes.csv")
+jobs_df = pd.read_csv("datasets/cleaned/cleaned_job_postings.csv")
 
 # ============================================================
 # Combine the combined_text fields from both datasets for fitting
