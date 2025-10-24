@@ -26,7 +26,7 @@ vectorizer = TfidfVectorizer(
     ngram_range = (1, 2), # Captures both single words and 2-word phrases
     min_df = 5, # Filters out words that appear in less than 5 resumes/job postings
     max_df = 0.75, # Filters out words that appear in >75% of resumes/job postings
-    sublinear_tf = True
+    sublinear_tf = True # Log-scale term frequencies for stability
 )
 
 vectorizer.fit(all_texts)
