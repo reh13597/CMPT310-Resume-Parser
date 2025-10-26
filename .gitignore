@@ -1,2 +1,4 @@
 /Files/*
 venv/
+datasets/embeddings/
+models/tfidf_vectorizer.pkl
