@@ -2,3 +2,7 @@
 venv/
 datasets/embeddings/
 models/tfidf_vectorizer.pkl
+models/tfidf_vectorizer_fit.pkl
+models/logistic_regression_fit_model.pkl
+datasets/predictions
+datasets/recommendations
