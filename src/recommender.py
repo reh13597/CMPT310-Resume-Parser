@@ -173,7 +173,21 @@ plt.close()
 print(f"💾 Saved confusion matrix: {conf_matrix_path}")
 
 # ------------------------------------------------------------
-# (B) Model Comparison Bar Chart (LR vs RF)
+# (B) Confusion Matrix for Random Forest
+# ------------------------------------------------------------
+
+cm = confusion_matrix(y_test, y_pred_rf)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["No Fit", "Fit"])
+disp.plot(cmap="Blues")
+plt.title("Confusion Matrix – Random Forest")
+plt.tight_layout()
+conf_matrix_path = VIS_DIR / "confusion_matrix_randforest.png"
+plt.savefig(conf_matrix_path)
+plt.close()
+print(f"💾 Saved confusion matrix: {conf_matrix_path}")
+
+# ------------------------------------------------------------
+# (C) Model Comparison Bar Chart (LR vs RF)
 # ------------------------------------------------------------
 comparison_df = pd.DataFrame({
     "Model": ["Logistic Regression", "Random Forest"],
@@ -194,7 +208,7 @@ plt.close()
 print(f"💾 Saved model comparison chart: {model_comp_path}")
 
 # ------------------------------------------------------------
-# (C) Top 5 Job Recommendations per Candidate
+# (D) Top 5 Job Recommendations per Candidate
 # ------------------------------------------------------------
 top_viz = final_recs.groupby("Resume Name").head(5)
 sample_resumes = top_viz["Resume Name"].unique()[:3]
