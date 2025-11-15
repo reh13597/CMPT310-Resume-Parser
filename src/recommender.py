@@ -21,7 +21,7 @@ from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 # 1. MODEL TRAINING & PREDICTION EXPORT
 # ------------------------------------------------------------
 
-print("\n📘 STEP 1: Training Models & Exporting Fit Probabilities")
+print("\nSTEP 1: Training Models & Exporting Fit Probabilities")
 
 TRAIN_PATH = Path("datasets/validation-set/train.csv")
 TEST_PATH = Path("datasets/validation-set/test.csv")
@@ -61,14 +61,14 @@ X_test = vectorizer.transform(test_df["combined_text"])
 model = LogisticRegression(max_iter=1000)
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
-print("\n📊 Logistic Regression Results:")
+print("\nLogistic Regression Results:")
 print(classification_report(y_test, y_pred))
 
 # Random Forest (comparison)
 rf = RandomForestClassifier(n_estimators=200, random_state=42)
 rf.fit(X_train, y_train)
 y_pred_rf = rf.predict(X_test)
-print("\n🌳 Random Forest Results:")
+print("\nRandom Forest Results:")
 print(classification_report(y_test, y_pred_rf))
 
 # Save probabilities
@@ -76,7 +76,7 @@ prob_dir = Path("datasets/predictions"); prob_dir.mkdir(parents=True, exist_ok=T
 y_probs = model.predict_proba(X_test)[:, 1]
 prob_df = pd.DataFrame({"sample_id": range(len(y_probs)), "predicted_fit_prob": y_probs})
 prob_df.to_csv(prob_dir / "predicted_fit_probabilities.csv", index=False)
-print(f"💾 Saved predicted fit probabilities to {prob_dir/'predicted_fit_probabilities.csv'}")
+print(f"Saved predicted fit probabilities to {prob_dir/'predicted_fit_probabilities.csv'}")
 
 joblib.dump(model, "models/logistic_regression_fit_model.pkl")
 joblib.dump(vectorizer, "models/tfidf_vectorizer_fit.pkl")
@@ -85,7 +85,7 @@ joblib.dump(vectorizer, "models/tfidf_vectorizer_fit.pkl")
 # 2. SKILL-BASED + SIMILARITY RANKING
 # ------------------------------------------------------------
 
-print("\n📘 STEP 2: Building Similarity-Based Recommendations")
+print("\nSTEP 2: Building Similarity-Based Recommendations")
 
 CLEAN_DIR = Path("datasets/cleaned")
 EMBED_DIR = Path("datasets/embeddings")
@@ -127,7 +127,7 @@ final_recs = recs_df.groupby("Resume Name").head(5).reset_index(drop=True)
 # 3. HYBRID FIT SCORE INTEGRATION
 # ------------------------------------------------------------
 
-print("\n📘 STEP 3: Combining Similarity + Model Confidence")
+print("\nSTEP 3: Combining Similarity + Model Confidence")
 
 fit_probs_path = prob_dir / "predicted_fit_probabilities.csv"
 fit_probs = pd.read_csv(fit_probs_path)
@@ -143,7 +143,7 @@ final_recs.sort_values(["Resume Name", "Fit Score"], ascending=[True, False], in
 out_path = OUTPUT_DIR / "final_ranked_recommendations.csv"
 final_recs.to_csv(out_path, index=False)
 
-print(f"\n✅ Final ranked recommendations saved to {out_path}")
+print(f"\nFinal ranked recommendations saved to {out_path}")
 print(final_recs.head(10).to_string(index=False))
 
 
@@ -152,7 +152,7 @@ print(final_recs.head(10).to_string(index=False))
 # 4. VISUALIZATIONS: Save Model and Recommendation Charts
 # ------------------------------------------------------------
 
-print("\n📘 STEP 4: Generating and Saving All Visualizations")
+print("\nSTEP 4: Generating and Saving All Visualizations")
 
 # Ensure visualization directory exists
 VIS_DIR = Path("visualizations")
@@ -170,7 +170,7 @@ plt.tight_layout()
 conf_matrix_path = VIS_DIR / "confusion_matrix_logreg.png"
 plt.savefig(conf_matrix_path)
 plt.close()
-print(f"💾 Saved confusion matrix: {conf_matrix_path}")
+print(f"Saved confusion matrix: {conf_matrix_path}")
 
 # ------------------------------------------------------------
 # (B) Confusion Matrix for Random Forest
@@ -184,7 +184,7 @@ plt.tight_layout()
 conf_matrix_path = VIS_DIR / "confusion_matrix_randforest.png"
 plt.savefig(conf_matrix_path)
 plt.close()
-print(f"💾 Saved confusion matrix: {conf_matrix_path}")
+print(f"Saved confusion matrix: {conf_matrix_path}")
 
 # ------------------------------------------------------------
 # (C) Model Comparison Bar Chart (LR vs RF)
@@ -205,14 +205,14 @@ plt.tight_layout()
 model_comp_path = VIS_DIR / "model_comparison.png"
 plt.savefig(model_comp_path)
 plt.close()
-print(f"💾 Saved model comparison chart: {model_comp_path}")
+print(f"Saved model comparison chart: {model_comp_path}")
 
 # ------------------------------------------------------------
 # (D) Top 5 Job Recommendations per Candidate
 # ------------------------------------------------------------
 top_viz = final_recs.groupby("Resume Name").head(5)
 sample_resumes = top_viz["Resume Name"].unique()[:3]
-print(f"🧑‍💼 Generating recommendation charts for: {', '.join(sample_resumes)}")
+print(f"Generating recommendation charts for: {', '.join(sample_resumes)}")
 
 for name in sample_resumes:
     subset = top_viz[top_viz["Resume Name"] == name]
@@ -231,6 +231,6 @@ for name in sample_resumes:
     rec_path = VIS_DIR / f"{name.replace(' ', '_')}_recommendations.png"
     plt.savefig(rec_path)
     plt.close()
-    print(f"💾 Saved recommendations chart for {name}: {rec_path}")
+    print(f"Saved recommendations chart for {name}: {rec_path}")
 
-print("\n✅ All visualizations saved successfully in the /visualizations/ folder.")
+print("\nAll visualizations saved successfully in the /visualizations/ folder.")

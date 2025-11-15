@@ -62,7 +62,7 @@ def main():
     # ============================================================
     # CLEAN RESUMES
     # ============================================================
-    print("\n🧾 Cleaning resumes...")
+    print("\nCleaning resumes...")
 
     resumes = []
     with open(RESUME_PATH, "r", encoding="utf-8") as f:
@@ -104,13 +104,13 @@ def main():
         "combined_text": resumes_df["combined_text"]
     })
 
-    print("✅ Sample cleaned resume:")
+    print("Sample cleaned resume:")
     print(resumes_df_out.head(1).to_string(index=False))
 
     # ============================================================
     # CLEAN JOB POSTINGS
     # ============================================================
-    print("\n💼 Cleaning job postings...")
+    print("\nCleaning job postings...")
 
     job_postings = pd.read_csv(JOB_PATH)
     print(f"Loaded {len(job_postings)} job postings")
@@ -144,7 +144,7 @@ def main():
         "location", "combined_text"
     ]]
 
-    print("✅ Sample cleaned job posting:")
+    print("Sample cleaned job posting:")
     print(job_postings_out.head(1).to_string(index=False))
 
     # ============================================================
@@ -153,7 +153,7 @@ def main():
     resumes_df_out.to_csv(OUTPUT_DIR / "cleaned_resumes.csv", index=False)
     job_postings_out.to_csv(OUTPUT_DIR / "cleaned_job_postings.csv", index=False)
 
-    print("\n🎯 Cleaning complete! Files saved to:")
+    print("\nCleaning complete! Files saved to:")
     print(" - datasets/cleaned/cleaned_resumes.csv")
     print(" - datasets/cleaned/cleaned_job_postings.csv")
 
