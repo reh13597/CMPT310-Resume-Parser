@@ -16,18 +16,9 @@ import numpy as np
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
-
 # ------------------------------------------------------------
-# 1. MODEL TRAINING & PREDICTION EXPORT
+# HELPER FUNCTIONS
 # ------------------------------------------------------------
-
-print("\nSTEP 1: Training Models & Exporting Fit Probabilities")
-
-TRAIN_PATH = Path("datasets/validation-set/train.csv")
-TEST_PATH = Path("datasets/validation-set/test.csv")
-
-train_df = pd.read_csv(TRAIN_PATH)
-test_df = pd.read_csv(TEST_PATH)
 
 def basic_clean(text):
     text = str(text).lower()
@@ -43,6 +34,18 @@ def clean_label(label):
     elif label == "no fit":
         return 0
     return None
+
+# ------------------------------------------------------------
+# 1. MODEL TRAINING & PREDICTION EXPORT
+# ------------------------------------------------------------
+
+print("\nSTEP 1: Training Models & Exporting Fit Probabilities")
+
+TRAIN_PATH = Path("datasets/validation-set/train.csv")
+TEST_PATH = Path("datasets/validation-set/test.csv")
+
+train_df = pd.read_csv(TRAIN_PATH)
+test_df = pd.read_csv(TEST_PATH)
 
 for df in [train_df, test_df]:
     df["label_clean"] = df["label"].apply(clean_label)
