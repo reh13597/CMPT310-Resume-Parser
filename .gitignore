@@ -1,8 +1,11 @@
 /Files/*
 venv/
-datasets/embeddings/
+
+datasets/embeddings/jobs_tfidf.npz
+datasets/embeddings/resume_job_similarity.csv
+datasets/embeddings/resumes_tfidf.npz
+datasets/embeddings/top_matches.csv
+
+models/logreg_fit_model.pkl
+models/tfidf_fit_vectorizer.pkl
 models/tfidf_vectorizer.pkl
-models/tfidf_vectorizer_fit.pkl
-models/logistic_regression_fit_model.pkl
-datasets/predictions
-datasets/recommendations
