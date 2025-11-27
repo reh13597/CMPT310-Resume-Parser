@@ -11,7 +11,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # ============================
-# PATHS
+# ESTABLISH DATASET PATHS
 # ============================
 VIS_DIR = Path("visualizations")
 VIS_DIR.mkdir(exist_ok=True)
@@ -23,7 +23,7 @@ RECOMMEND_DIR = Path("datasets/recommendations")
 
 
 # ============================
-# HELPERS
+# HELPER FUNCTIONS
 # ============================
 def basic_clean(text):
     import re
@@ -86,7 +86,7 @@ y_pred_rf = rf.predict(X_test)
 
 
 # ============================
-# (1) CONFUSION MATRICES
+# (1) CONFUSION MATRICES (LOGISTIC REGRESSION AND RANDOM FOREST)
 # ============================
 plt.figure(figsize=(6, 4))
 ConfusionMatrixDisplay.from_predictions(y_test, y_pred_lr, display_labels=["No Fit","Fit"], cmap="Blues")
@@ -183,7 +183,7 @@ for r in sample_resumes:
 
 
 # ============================
-# (6) SKILL OVERLAP CHARTS
+# (6) SKILL OVERLAP BAR CHART
 # ============================
 for r in sample_resumes:
     sub = recs[recs["resume_name"] == r].head(5)
