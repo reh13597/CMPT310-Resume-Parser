@@ -2,12 +2,12 @@
 # Resume-to-Job AI Matching System
 
 ## Project Overview
-Our Resume Parser and Job Recommender System is an AI-driven Resume Parser and Job Recommender System that automates candidate–job matching. The system is built upon Natural Language Processing (NLP) for resume/job text extraction alongside TF-IDF vectorization in computation for candidate-job similarity via predicted numerical job-fit score for each candidate-job pair. The system takes resumes and job postings as input and outputs a ranked list of recommended jobs based on textual similarity and predicted compatibility.  
+Our Resume Parser and Job Recommender System is an AI-driven Resume Parser and Job Recommender System that automates candidate–job matching. The system is built upon Natural Language Processing (NLP) for resume/job text extraction alongside TF-IDF vectorization in computation for candidate-job similarity via predicted numerical job-fit score for each candidate-job pair. The system takes resumes and job postings as input and outputs a ranked list of recommended jobs based on textual similarity and predicted compatibility.
 
 Datasets were sourced from HuggingFace:​
 
 Resumes: https://huggingface.co/datasets/datasetmaster/resumes (mix of synthetic and real resumes in JSON format)
-Job postings: Hugging Face LinkedIn Job Postings, which contains 33k real-world postings. We will sample or filter subsets (e.g., technical jobs) to keep training manageable.
+Job postings: https://huggingface.co/datasets/xanderios/linkedin-job-postings, which contains 33k real-world postings. We will sample or filter subsets (e.g., technical jobs) to keep training manageable.
 
 Validation set: https://huggingface.co/datasets/cnamuangtoun/resume-job-description-fit (pairs of resumes and job descriptions with ground-truth "fit" labels, which allow us to evaluate model accuracy using metrics such as precision, recall, and F1-score).
 
@@ -36,7 +36,7 @@ The system utilized logistic regression and random forest for the classifiers. T
    ```
 
 4. Or Run Steps Individually
-   
+
    A. Preprocess Raw Resumes + Job Postings
    ```
    python src/data_preprocessing.py
@@ -96,7 +96,7 @@ Visualizations:
 Saved Models:
    ```
       models/logreg_fit_model.pkl
-   
+
       models/tfidf_fit_vectorizer.pkl
    ```
 
