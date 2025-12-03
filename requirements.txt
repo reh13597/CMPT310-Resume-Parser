@@ -1,11 +1,11 @@
-pandas
-numpy
-spacy
-tqdm
-matplotlib
-seaborn
-joblib
-scikit-learn
+pandas >= 2.3.3
+numpy >= 2.3.5
+spacy >= 3.8.11
+tqdm >= 4.67.1
+matplotlib >= 3.10.7
+seaborn >= 0.13.2
+joblib >= 1.5.2
+scikit-learn >= 1.7.2
 https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
 
 
